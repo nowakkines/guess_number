@@ -12,15 +12,22 @@ I advise you to use binary search.
      ''')
 
 
+def generate():
+    global stop, GUESS
+    stop = int(input('Enter the end of range >> '))
+    GUESS = randint(1, stop)
+    print(f'[!] The number is generated! You have selected a range from 1 to {stop}!\n')
+
+
 def conditions(user_number):
     global STOP_GAME, COUNTER
     user_number = int(user_number)
     if user_number > GUESS:
         COUNTER += 1
-        print(f'[HOT] Oh no, your number is bigger than ours. {GUESS}')
+        print(f'[HOT] Oh no, your number is bigger than ours.')
     elif user_number < GUESS:
         COUNTER += 1
-        print(f'[COLDY] Oh no, your number is less than ours. {GUESS}')
+        print(f'[COLDY] Oh no, your number is less than ours.')
     else:
         print(f'*** Congrats! You did it. ***')
         ask_continue()
@@ -29,7 +36,7 @@ def conditions(user_number):
 def playing_game():
     global STOP_GAME
     while STOP_GAME != True:
-        user_number = input(f'[?] {GUESS} Enter a number >> ')
+        user_number = input(f'[?] Enter a number >> ')
         if is_valid(user_number):
             conditions(user_number)
         if COUNTER == 5:
@@ -69,4 +76,5 @@ def is_valid(value):
 
 
 hello()
+generate()
 playing_game()
