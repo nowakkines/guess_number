@@ -40,6 +40,7 @@ def playing_game():
         elif COUNTER == 4:
             print()
             print('[1] You have one last attempt!\n')
+            
 
 def ask_continue():
     global STOP_GAME, GUESS, stop
