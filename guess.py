@@ -2,6 +2,7 @@ from random import randint
 STOP_GAME = None
 COUNTER = 0
 
+
 def hello():
     print('''
 Welcome to GUESS number.
@@ -10,10 +11,6 @@ we will remind you when the last one remains,
 I advise you to use binary search.
      ''')
 
-hello()
-stop = int(input('Enter the end of range >> '))
-print(f'[!] The number is generated! You have selected a range from 1 to {stop}!\n')
-GUESS = randint(1, stop)
 
 def conditions(user_number):
     global STOP_GAME, COUNTER
@@ -28,6 +25,7 @@ def conditions(user_number):
         print(f'*** Congrats! You did it. ***')
         ask_continue()
 
+
 def playing_game():
     global STOP_GAME
     while STOP_GAME != True:
@@ -40,7 +38,7 @@ def playing_game():
         elif COUNTER == 4:
             print()
             print('[1] You have one last attempt!\n')
-            
+
 
 def ask_continue():
     global STOP_GAME, GUESS, stop
@@ -58,6 +56,7 @@ def ask_continue():
             print('[!] Upps, you didn\'t enter a number! (+ or -)\n')
             ask_continue()
 
+
 def is_valid(value):
     try:
         number = int(value)
@@ -68,4 +67,6 @@ def is_valid(value):
     except AssertionError as Error:
         print(Error)
 
+
+hello()
 playing_game()
