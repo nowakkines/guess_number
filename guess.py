@@ -29,7 +29,10 @@ def conditions(user_number):
         COUNTER += 1
         print(f'[COLDY] Oh no, your number is less than ours.')
     else:
-        print(f'*** Congrats! You did it. ***')
+        print('''
+        *****************************
+        *   Congrats! You did it.   *
+        *****************************\n''')
         ask_continue()
 
 
