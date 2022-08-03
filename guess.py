@@ -46,7 +46,6 @@ def playing_game():
             print('[-_-] Unfortunately you couldn\'t :)\n')
             ask_continue()
         elif COUNTER == 4:
-            print()
             print('[1] You have one last attempt!\n')
 
 
@@ -62,7 +61,6 @@ def ask_continue():
             print('[!] Thank your for playing!')
             STOP_GAME = True
         case _:
-            print()
             print('[!] Upps, you didn\'t enter a number! (+ or -)\n')
             ask_continue()
 
@@ -76,6 +74,7 @@ def is_valid(value):
         print('Don\'t you think you were driving a wrong number?')
     except AssertionError as Error:
         print(Error)
+
 
 
 hello()
