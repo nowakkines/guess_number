@@ -28,10 +28,9 @@ def conditions(user_number):
         COUNTER += 1
         print(f'[COLDY] Oh no, your number is less than ours.')
     else:
-        print('''
-        *****************************
-        *   Congrats! You did it.   *
-        *****************************\n''')
+        console.print(Panel('''[blue]Congratulations!
+Binary search or is my code so clumsy?
+I think the second.''', title='Guessing number'), justify='center')
         ask_continue()
 
 
