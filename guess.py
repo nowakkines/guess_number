@@ -4,12 +4,9 @@ COUNTER = 0
 
 
 def hello():
-    print('''
-Welcome to GUESS number.
-The rules are quite simple, you have 5 attempts,
-we will remind you when the last one remains,
-I advise you to use binary search.
-     ''')
+    console.print(Panel('''[red]The rules are quite simple, you have 5 attempts
+we will remind you when the last one remains
+i advise you to use binary search.''', title='Guessing number'), justify='center')
 
 
 def generate():
