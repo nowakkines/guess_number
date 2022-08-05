@@ -5,6 +5,7 @@ from rich.panel import Panel
 from rich.progress import track
 from time import sleep
 
+
 console = Console()
 STOP_GAME = None
 COUNTER = 0
@@ -17,8 +18,9 @@ i advise you to use binary search.''', title='Guessing number'), justify='center
 
 def generate():
     global stop, GUESS
-    stop = input('Enter the end of range >> ')
-    if xyi(stop):
+    console.print('[green] -- [i]We need your number to create the end of the range[/i] -- [/green]')
+    stop = console.input('your range: ')
+    if is_correct_range(stop):
         stop = int(stop)
         GUESS = randint(1, stop)
         for n in track(range(50), description='Processing...'):
@@ -49,7 +51,7 @@ def conditions(user_number):
 def playing_game():
     global STOP_GAME
     while STOP_GAME != True:
-        user_number = input(f'[?] Enter a number >> ')
+        user_number = input(f'[green]Enter a number[/green] ')
         if is_valid(user_number):
             conditions(user_number)
         if COUNTER == 5:
