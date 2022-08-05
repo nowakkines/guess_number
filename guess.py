@@ -1,7 +1,13 @@
 from random import randint
+from rich.console import Console
+from rich import print
+from rich.panel import Panel
+from rich.progress import track
+from time import sleep
+
+console = Console()
 STOP_GAME = None
 COUNTER = 0
-
 
 def hello():
     console.print(Panel('''[red]The rules are quite simple, you have 5 attempts
@@ -11,11 +17,16 @@ i advise you to use binary search.''', title='Guessing number'), justify='center
 
 def generate():
     global stop, GUESS
-    stop = int(input('Enter the end of range >> '))
-    GUESS = randint(1, stop)
-    for n in track(range(50), description='Processing...'):
-        sleep(0.03)
-    print(f'[red]The number is generated![/red] You have selected a range from 1 to {stop}!\n')
+    stop = input('Enter the end of range >> ')
+    if xyi(stop):
+        stop = int(stop)
+        GUESS = randint(1, stop)
+        for n in track(range(50), description='Processing...'):
+            sleep(0.03)
+        print(f'[red]The number is generated![/red] You have selected a range from 1 to {stop}!\n')
+    else:
+        print('false')
+        generate()
 
 
 def conditions(user_number):
@@ -23,10 +34,10 @@ def conditions(user_number):
     user_number = int(user_number)
     if user_number > GUESS:
         COUNTER += 1
-        print(f'[HOT] Oh no, your number is bigger than ours.')
+        print(f'[HOT] {GUESS} Oh no, your number is bigger than ours.')
     elif user_number < GUESS:
         COUNTER += 1
-        print(f'[COLDY] Oh no, your number is less than ours.')
+        print(f'[COLDY] {GUESS} Oh no, your number is less than ours.')
     else:
         print('''
         *****************************
@@ -54,7 +65,10 @@ def ask_continue():
         case '+':
             stop = int(input('Enter the end of range >> '))
             GUESS = randint(1, stop)
-            print(f'[!] The number is generated! You have selected a range from 1 to {stop}!\n')
+            for n in track(range(50), description='Processing...'):
+                sleep(0.03)
+            print(f'[red]The number is generated![/red] You have selected a range from 1 to {stop}!\n')
+
 
         case '-':
             print('[!] Thank your for playing!')
@@ -75,7 +89,10 @@ def is_valid(value):
         print(Error)
 
 
+def is_correct_range(value):
+    return value.isdigit()
 
-hello()
+
+# hello()
 generate()
 playing_game()
