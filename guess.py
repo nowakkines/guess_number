@@ -13,7 +13,9 @@ def generate():
     global stop, GUESS
     stop = int(input('Enter the end of range >> '))
     GUESS = randint(1, stop)
-    print(f'[!] The number is generated! You have selected a range from 1 to {stop}!\n')
+    for n in track(range(50), description='Processing...'):
+        sleep(0.03)
+    print(f'[red]The number is generated![/red] You have selected a range from 1 to {stop}!\n')
 
 
 def conditions(user_number):
