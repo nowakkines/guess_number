@@ -1,6 +1,7 @@
 from random import randint
 STOP_GAME = None
 COUNTER = 0
+#
 
 
 def hello():
