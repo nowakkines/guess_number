@@ -1,0 +1,2 @@
+class Dick():
+    pass
