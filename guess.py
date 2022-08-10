@@ -5,10 +5,10 @@ from rich import print
 from rich.panel import Panel
 from rich.progress import track
 from time import sleep
+from math import log2
 
 console = Console()
 STOP_GAME = None
-COUNTER = 0
 
 
 jokes = ['Binary search didn\'t help?', 'What\'s the matter with you?', 'You were close!', 'Ha-ha-ha',
@@ -16,9 +16,10 @@ jokes = ['Binary search didn\'t help?', 'What\'s the matter with you?', 'You wer
 
 
 def hello():
-    console.print(Panel('''[red]The rules are quite simple, you have 5 attempts
-we will remind you when the last one remains
-i advise you to use binary search.''', title='Guessing number'), justify='center')
+    console.print(Panel('''The rules are quite simple:
+[red]The program will decide how many attempts you should give.
+We will remind you when the last one remains.
+I advise you to use binary search.''', title='Guessing number'), justify='center')
     generate()
 
 
@@ -35,20 +36,26 @@ to [yellow]{stop}[/yellow].', title='[red]Error'), justify='center')
 
 
 def is_correct_range(value):
-    return value.isdigit() and 1 <= int(value)
+    return value.isdigit() and 3 <= int(value)
+
+
+def is_counter():
+    global COUNTER
+    COUNTER = round(log2(int(stop)))
+    return COUNTER != 0
 
 
 def generate():
     global GUESS, stop
     console.print('[green] -- [i]We need your number to create the end of the range[/i] -- [/green]')
     stop = input('your range: ')
-    if is_correct_range(stop):
+    if is_correct_range(stop) and is_counter():
         stop = int(stop)
         GUESS = randint(1, stop)
         for _ in track(range(50), description='[green]Processing...'):
             sleep(0.03)
         print(Panel(f'[red]The number is generated![/red] You have selected \
-a range from [green]1[/green] to [green]{stop}[/green]!'))
+a range from [green]1[/green] to [green]{stop}[/green]! You have {COUNTER} attempts in your pocket.'))
         playing_game()
     else:
         console.print(Panel('Are you sure you entered a number?', title='[red]Error'), justify='center')
@@ -57,26 +64,26 @@ a range from [green]1[/green] to [green]{stop}[/green]!'))
 
 def playing_game():
     while STOP_GAME != True:
-        console.print('[green] -- [i]And now can you guess?[/i] -- [/green]')
+        console.print(f'[green] -- [i]And now can you guess?[/i] -- [/green]')
         user_number = input(f'your number: ')
         if is_valid(user_number):
             conditions(user_number)
-        if COUNTER == 5:
-            console.print(Panel('Unfortunately, you have run out of attempts.', title='[red]Defeat'))
+        if COUNTER == 0:
+            console.print(Panel(f'Unfortunately, you have run out of attempts. It was {GUESS}', title='[red]Defeat'), justify='center')
             ask_continue()
-        elif COUNTER == 4:
-            console.print(Panel('Be careful! You have [red]one last attempt left[/red]', title='Hint'))
+        elif COUNTER == 1:
+            console.print(Panel('[red]Be careful! You have one last attempt left[/red]', title='Hint'))
 
 
 def conditions(user_number):
     global COUNTER
     user_number = int(user_number)
     if user_number > GUESS:
-        console.print(Panel(f'{choice(jokes)}, your number is [red]bigger[/red] than ours.'))
-        COUNTER += 1
+        console.print(Panel(f'{choice(jokes)} your number is [red]bigger[/red] than ours.'))
+        COUNTER -= 1
     elif user_number < GUESS:
-        console.print(Panel(f'{choice(jokes)}, your number is [red]less[/red] than ours.'))
-        COUNTER += 1
+        console.print(Panel(f'{choice(jokes)} your number is [red]less[/red] than ours.'))
+        COUNTER -= 1
     else:
         console.print(Panel('''[blue]Congratulations!
 Binary search or is my code so clumsy?
@@ -86,7 +93,7 @@ I think the second.''', title='Guessing number'), justify='center')
 
 def ask_continue():
     global STOP_GAME
-    match console.input('[red]                         Don\'t you want to continue? (+/-) [/red]'):
+    match console.input('[red]don\'t you want to continue? (+/-) [/red]'):
         case '+':
             generate()
         case '-':
