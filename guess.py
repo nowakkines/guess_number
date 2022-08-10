@@ -11,8 +11,8 @@ console = Console()
 STOP_GAME = None
 
 
-jokes = ['Binary search didn\'t help?', 'What\'s the matter with you?', 'You were close!', 'Ha-ha-ha',
-        'You accidentally missed', 'Seriously?', 'Almost']
+jokes = ['Binary search didn\'t help?', 'What\'s the matter with you?', 'You were close!', 'Ha-ha-ha!',
+        'You accidentally missed!', 'Seriously?', 'Almost!']
 
 
 def hello():
@@ -79,10 +79,10 @@ def conditions(user_number):
     global COUNTER
     user_number = int(user_number)
     if user_number > GUESS:
-        console.print(Panel(f'{choice(jokes)} your number is [red]bigger[/red] than ours.'))
+        console.print(Panel(f'{choice(jokes)} Your number is [red]bigger[/red] than ours.'))
         COUNTER -= 1
     elif user_number < GUESS:
-        console.print(Panel(f'{choice(jokes)} your number is [red]less[/red] than ours.'))
+        console.print(Panel(f'{choice(jokes)} Your number is [red]less[/red] than ours.'))
         COUNTER -= 1
     else:
         console.print(Panel('''[blue]Congratulations!
