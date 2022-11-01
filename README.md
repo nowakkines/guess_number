@@ -1,24 +1,4 @@
 <h1>
-  Числовая угадайка.
+Numerical guessing game
  </h1>
- 
-  Описание проекта: программа генерирует случайное число в диапазоне от 1 до n и просит пользователя угадать это число. Если догадка пользователя больше случайного числа, то программа должна вывести сообщение 'Слишком много, попробуйте еще раз'. Если догадка меньше случайного числа, то программа должна вывести сообщение 'Слишком мало, попробуйте еще раз'. Если пользователь угадывает число, то программа должна поздравить его и вывести сообщение 'Вы угадали, поздравляем!'.
-
-Составляющие проекта:
-
-- Целые числа (тип int);
-- Переменные;
-- Ввод / вывод данных (функции input() и print());
-- Условный оператор (if/elif/else);
-- Цикл while;
-- Бесконечный цикл;
-- Операторы break, continue;
-- Работа с модулем random для генерации случайных чисел.
-</h1>
-<div id="header" align="center">
-  <img src='https://media4.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif?cid=ecf05e474zlbi6s3k0zz7ac6ygvu47nc1606qv4zea5kpt8r&rid=giphy.gif&ct=g' width="450"/>
-</div>
-
-
-<div id="header" align="center">
-</div> 
+Project description: The program generates a random number in the range from 1 to n and asks the user to guess this number. If the user's guess is greater than a random number, then the program should output the message 'Too much, try again'. If the guess is less than a random number, then the program should output the message 'Too little, try again'. If the user guesses the number, the program should congratulate him and display a message 'You guessed it, congratulations!'.
