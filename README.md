@@ -8,4 +8,4 @@ Can you guess the number using binary search?
 
 # How it looks like
 
-<img src="https://raw.githubusercontent.com/ap7kj/guess_number/main/guess_number/img/cover.jpg" alt="Guess number">
+<img src="https://raw.githubusercontent.com/ap7kj/guess_number/main/guess_number/img/profile.jpg" alt="Guess number">
